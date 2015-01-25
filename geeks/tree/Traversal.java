@@ -8,32 +8,29 @@ public class Traversal {
 	public void recursiveInOrder(Node root){
 		if(root == null)
 			return;
-		else{
-			recursiveInOrder(root.left);
-			System.out.print(root.key + " ");
-			recursiveInOrder(root.right);
-		}
+	
+		recursiveInOrder(root.left);
+		System.out.print(root.key + " ");
+		recursiveInOrder(root.right);
 	}
 	
 	public void recursivePreOrder(Node root){
 		if(root == null){
 			return;
 		}
-		else{
-			System.out.print(root.key + " ");
-			recursivePreOrder(root.left);
-			recursivePreOrder(root.right);
-		}
+		
+		System.out.print(root.key + " ");
+		recursivePreOrder(root.left);
+		recursivePreOrder(root.right);
 	}
 	
 	public void recursivePostOrder(Node root){
 		if(root == null)
 			return;
-		else{
-			recursivePostOrder(root.left);
-			recursivePostOrder(root.right);
-			System.out.print(root.key + " ");
-		}
+		
+		recursivePostOrder(root.left);
+		recursivePostOrder(root.right);
+		System.out.print(root.key + " ");
 	}
 	
 	public void iterativeInOrder(Node root){
