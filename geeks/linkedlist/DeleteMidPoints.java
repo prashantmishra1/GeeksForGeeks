@@ -20,6 +20,13 @@ public class DeleteMidPoints {
 			delete(start.next);
 		
 	}
+
+	private void printList(Coordinates start){
+		while(start != null){
+			System.out.print("(" + start.x + "," + start.y + ") ");
+			start = start.next;
+		}
+	}
 	
 	public static void main(String args[]){
 		DeleteMidPoints obj = new DeleteMidPoints();
@@ -37,12 +44,5 @@ public class DeleteMidPoints {
 		obj.delete(start);
 		System.out.println("\nProcessed Coordinates -->");
 		obj.printList(start);
-	}
-	
-	private void printList(Coordinates start){
-		while(start != null){
-			System.out.print("(" + start.x + "," + start.y + ") ");
-			start = start.next;
-		}
 	}
 }
