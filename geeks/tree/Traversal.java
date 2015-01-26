@@ -57,6 +57,24 @@ public class Traversal {
 		}
 	}
 	
+	public void iterativePreOrder(Node root){
+		Stack<Node> st = new Stack<Node>();
+		Node node;
+		while(true){
+			while(root != null){
+				System.out.print(root.key + " ");
+				st.push(root);
+				root = root.left;
+			}
+			
+			if(st.empty()) break;
+			
+			node = st.pop();
+			root = node.right;
+			
+		}
+	}
+	
 	private void findSpan(Node root, int dist){
 		if(root == null)
 			return;
@@ -131,10 +149,14 @@ public class Traversal {
 		System.out.println("\nPre Order Traveral (recursive) -->");
 		obj.recursivePreOrder(root);
 		
+		System.out.println("\nPre Order Traveral (iterative) -->");
+		obj.iterativePreOrder(root);
+		
 		System.out.println("\nPost Order Traveral (recursive) -->");
 		obj.recursivePostOrder(root);
-
-		System.out.println("Vertical Traversal (recursive) -->");
+		
+		System.out.println("\nVertical Traversal (recursive) -->");
 		obj.verticalTraversal(root);
+		
 	}
 }
