@@ -5,6 +5,12 @@ import java.util.*;
 
 public class Traversal {
 	
+	private static int min_span, max_span;
+	
+	public Traversal(){
+		min_span = max_span = 0;
+	}
+	
 	public void recursiveInOrder(Node root){
 		if(root == null)
 			return;
@@ -51,6 +57,38 @@ public class Traversal {
 		}
 	}
 	
+	private void findSpan(Node root, int dist){
+		if(root == null)
+			return;
+		
+		findSpan(root.left, dist-1);
+		min_span = (dist < min_span) ? dist:min_span;
+		findSpan(root.right, dist+1);
+		max_span = (dist > max_span)? dist:max_span;
+	}
+	
+	private void printVertical(Node root, int current_dist, int line_no){
+		if(root == null)
+			return;
+		
+		if(current_dist == line_no)
+			System.out.print(root.key + " ");
+		
+		printVertical(root.left, current_dist-1, line_no);
+		printVertical(root.right, current_dist+1, line_no);
+	}
+	 
+	public void verticalTraversal(Node root){
+		int i = 0;
+		findSpan(root, 0);
+		
+		for (i = min_span; i <= max_span; i++){
+			printVertical(root, 0, i);
+		}
+		
+		min_span = max_span = 0;
+	}
+	
 	public static void main(String args[]){
 		Node root = new Node();
 		root.key = "A";
@@ -76,8 +114,15 @@ public class Traversal {
 		root.right.left.left = new Node();
 		root.right.left.left.key = "H";
 		
+		root.right.left.left.left = new Node();
+		root.right.left.left.left.key = "I";
+		
+		root.right.left.left.left.left = new Node();
+		root.right.left.left.left.left.key = "J";
+		
 		Traversal obj = new Traversal();
-		System.out.println("In Order Traversal (recursive) -->");
+		
+		System.out.println("\nIn Order Traversal (recursive) -->");
 		obj.recursiveInOrder(root);
 		
 		System.out.println("\nIn Order Traversal (iterative) -->");
@@ -88,7 +133,8 @@ public class Traversal {
 		
 		System.out.println("\nPost Order Traveral (recursive) -->");
 		obj.recursivePostOrder(root);
-		
+
+		System.out.println("Vertical Traversal (recursive) -->");
+		obj.verticalTraversal(root);
 	}
 }
-
