@@ -75,6 +75,30 @@ public class Traversal {
 		}
 	}
 	
+	public void iterativePostOrder(Node root){
+		Stack<Node> st = new Stack<Node>();
+		Node node;
+		while(true){
+			while(root != null){
+				st.push(root);
+				root = root.left;
+			}
+			node = st.peek();
+			if(node.right == null){
+				System.out.print(node.key + " ");
+				st.pop();
+			}
+			
+			root = st.peek().right;
+			
+			
+			if(st.empty()) break;
+			
+			
+			
+		}
+	}
+	
 	private void findSpan(Node root, int dist){
 		if(root == null)
 			return;
@@ -105,6 +129,35 @@ public class Traversal {
 		}
 		
 		min_span = max_span = 0;
+	}
+	
+	public int heightOfTree(Node root){
+		if(root == null){
+			return 0;
+		}
+		
+		int lDepth = heightOfTree(root.left);
+		int rDepth = heightOfTree(root.right);
+		
+		return (lDepth > rDepth) ? lDepth+1:rDepth+1;
+	}
+	
+	public void levelOrderTraversal(Node root){
+		int height = heightOfTree(root);
+		System.out.println("Height of Tree: " + height);
+		for(int i = 0; i<=height; i++)
+			printLevelOrder(root, 0, i);
+	}
+	
+	private void printLevelOrder(Node root, int start, int level){
+		if(root == null)
+			return;
+		if(start == level){
+			System.out.print(root.key + " ");
+		}
+		
+		printLevelOrder(root.left, start + 1, level);
+		printLevelOrder(root.right, start + 1, level);
 	}
 	
 	public static void main(String args[]){
@@ -155,8 +208,14 @@ public class Traversal {
 		System.out.println("\nPost Order Traveral (recursive) -->");
 		obj.recursivePostOrder(root);
 		
+		//System.out.println("\nPost Order Traversal (iterative) -->");
+		//obj.iterativePostOrder(root);
+		
 		System.out.println("\nVertical Traversal (recursive) -->");
 		obj.verticalTraversal(root);
+		
+		System.out.println("\nLevel Order Traversal (recursive) -->");
+		obj.levelOrderTraversal(root);
 		
 	}
 }
