@@ -159,6 +159,32 @@ public class Traversal {
 		printLevelOrder(root.left, start + 1, level);
 		printLevelOrder(root.right, start + 1, level);
 	}
+
+		public void zigzagTraversal(Node root){
+		int turn = 0;
+		int height = heightOfTree(root);
+		for(int a=0; a<height; a++){
+			printZigZag(root, a, turn);
+			turn = 1-turn;
+			
+		}
+	}
+	
+	private void printZigZag(Node root, int level, int x){
+		if(root == null)
+			return;
+		if(level == 0){
+			System.out.print(root.key + " ");
+			return;
+		}
+		else if(x == 0){
+			printZigZag(root.left, level-1, x);
+			printZigZag(root.right,level-1, x);
+		}else{
+			printZigZag(root.right, level-1, x);
+			printZigZag(root.left, level-1, x);
+		}
+	}
 	
 	public static void main(String args[]){
 		Node root = new Node();
@@ -216,6 +242,9 @@ public class Traversal {
 		
 		System.out.println("\nLevel Order Traversal (recursive) -->");
 		obj.levelOrderTraversal(root);
+
+		System.out.println("\nZigZag Traversal (recursive) -->");
+		obj.zigzagTraversal(root);
 		
 	}
 }
