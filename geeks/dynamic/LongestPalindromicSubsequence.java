@@ -1,4 +1,4 @@
-package geeksforgeeks.dynamic;
+package geeks.dynamic;
 
 public class LongestPalindromicSubsequence {
 	static int x, y;
