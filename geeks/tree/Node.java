@@ -4,10 +4,11 @@ public class Node {
 	public int intKey;
 	public String key;
 	public Node left, right;
+	public Node extra;
 	
 	public Node(){
 		key = "default";
-		left = right = null;
+		this.left = this.right = this.extra = null;
 	}
 
 	public Node(String key){
@@ -17,7 +18,7 @@ public class Node {
 	
 	public Node(int intKey){
 		this.intKey = intKey;
-		this.left = this.right = null;
+		this.left = this.right = this.extra = null;
 		
 	}
 }
